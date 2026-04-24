@@ -17,7 +17,7 @@ abstract class IReportFormatStrategy
 
     abstract protected function makeReport(Highload $highload): void;
 
-    public function generate(): void
+    public function generate(): bool
     {
         $unprocessedHighloads = Highload::whereDoesntHave('reports', function ($query) {
             $query->where('format', $this->format());
@@ -25,10 +25,13 @@ abstract class IReportFormatStrategy
 
         if($unprocessedHighloads->isEmpty()) {
             echo "All reports generated\n";
+            return false;
         }
 
         foreach ($unprocessedHighloads as $highload) {
             $this->makeReport($highload);
         }
+
+        return true;
     }
 }

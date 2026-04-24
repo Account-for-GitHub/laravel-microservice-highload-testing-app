@@ -6,8 +6,8 @@ use App\Services\Highload\report\formats\IReportFormatStrategy;
 
 class Reports
 {
-    public function generate(IReportFormatStrategy $format): void
+    public function generate(IReportFormatStrategy $format): bool
     {
-        $format->generate();
+        return $format->generate();
     }
 }

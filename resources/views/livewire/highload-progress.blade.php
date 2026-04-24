@@ -12,7 +12,7 @@
 
             <!-- Header Section -->
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Highload testing in progress</h2>
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">{{ __('Highload testing in progress') }}</h2>
                 <div class="bg-indigo-600 text-white px-4 py-1 rounded-full text-xl font-mono font-bold shadow-lg shadow-indigo-200">
                     {{ $percent }}%
                 </div>
@@ -42,9 +42,9 @@
                         <path class="opacity-75" fill="currentColor"
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Please wait, do not refresh
+                    {{ __('Please wait, do not refresh') }}
                 </span>
-                <span>Requests {{ $current }} of {{ $total }}</span>
+                <span>{{ __('Requests') }} {{ $current }} {{ __('of') }} {{ $total }}</span>
             </div>
         </div>
     </div>

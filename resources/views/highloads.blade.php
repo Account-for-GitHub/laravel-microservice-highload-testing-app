@@ -4,9 +4,25 @@
     </x-slot>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Highloads') }}
-        </h2>
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Highloads') }}
+            </h2>
+
+            <span class="space-x-6">
+                <a href="/generate-csv"
+                   class="bg-blue-600 text-white font-semibold py-2 px-10 rounded-md hover:bg-blue-700
+                   transition duration-300 shadow-lg cursor-pointer">
+                    {{ __('Generate CSV reports') }}
+                </a>
+
+                <a href="/generate-html"
+                   class="bg-blue-600 text-white font-semibold py-2 px-10 rounded-md hover:bg-blue-700
+                   transition duration-300 shadow-lg cursor-pointer">
+                    {{ __('Generate HTML reports') }}
+                </a>
+            </span>
+        </div>
     </x-slot>
 
     <div class="space-y-6">
