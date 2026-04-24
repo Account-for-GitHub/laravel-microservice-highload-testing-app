@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HighloadController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ResultsController;
 use App\Livewire\HighloadProgress;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/highload-progress', HighloadProgress::class)->name('highload-progress');
     Route::get('/results-list/{highloadId}', [ResultsController::class, 'list'])->name('results-list');
     Route::get('/aggregate-results/{highloadId}', [ResultsController::class, 'aggregate'])->name('aggregate-results');
+    Route::get('/generate-csv', [ReportsController::class, 'csv'])->name('generate-csv');
+    Route::get('/generate-html', [ReportsController::class, 'html'])->name('generate-html');
 });

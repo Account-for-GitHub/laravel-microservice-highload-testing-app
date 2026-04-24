@@ -18,11 +18,11 @@
 
     <!-- Highload info -->
     <div class="pb-8">
-        <div class="pb-3 text-2xl font-bold">Highload info</div>
+        <div class="pb-3 text-2xl font-bold">{{ __('Highload info') }}</div>
         <div>
-            <p>URL: <a href="{{ $highload->url }}" class="text-indigo-500">{{ $highload->url }}</a></p>
-            <p>Quantity of requests: <span class="text-indigo-500">{{ $highload->quantity }}</span></p>
-            <p>Request JSON: <span class="text-indigo-500">{{ $highload->request_json }}</span></p>
+            <p>{{ __('URL') }}: <a href="{{ $highload->url }}" class="text-indigo-500">{{ $highload->url }}</a></p>
+            <p>{{ __('Quantity of requests') }}: <span class="text-indigo-500">{{ $highload->quantity }}</span></p>
+            <p>{{ __('Request JSON') }}: <span class="text-indigo-500">{{ $highload->request_json }}</span></p>
         </div>
     </div>
 
