@@ -18,12 +18,13 @@ class HighloadController extends Controller
         $validated = $request->validate(
             [
                 'url' => 'required|url|max:20|min:5',
-                'quantity' => 'required|int|min:0|max:100',
+                'quantity' => 'required|int|min:1|max:100',
                 'request' => 'required|json|min:2',
             ],
             [
                 'url.required' => 'This field is required!',
                 'url.max' => 'Too much characters!',
+                'quantity.min' => 'The quantity of testing requests should not be less than 1',
                 'quantity.max' => 'The quantity of testing requests should not be greater than 100',
             ],
         );
