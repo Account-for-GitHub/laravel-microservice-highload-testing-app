@@ -3,6 +3,7 @@
 namespace App\Services\Highload\report\formats;
 
 use App\Models\Highload;
+use App\Services\Highload\helpers\Output;
 
 abstract class IReportFormatStrategy
 {
@@ -11,7 +12,7 @@ abstract class IReportFormatStrategy
     public const HTML = 2;
     public const HTML_NAME = 'html';
 
-    abstract public static function formatName(): string;
+    abstract public function formatName(): string;
 
     abstract public function format(): int;
 
@@ -21,14 +22,14 @@ abstract class IReportFormatStrategy
     {
         $unprocessedHighloads = Highload::whereDoesntHave('reports', function ($query) {
             $query->where('format', $this->format());
-        })->get();
+        });
 
-        if($unprocessedHighloads->isEmpty()) {
-            echo "All reports generated\n";
+        if($unprocessedHighloads->count() === 0) {
+            Output::addString("All {$this->formatName()} report files already generated!\n");
             return false;
         }
 
-        foreach ($unprocessedHighloads as $highload) {
+        foreach ($unprocessedHighloads->get() as $highload) {
             $this->makeReport($highload);
         }
 

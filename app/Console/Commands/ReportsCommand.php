@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Highload\helpers\Output;
 use App\Services\Highload\report\formats\CSVReport;
 use App\Services\Highload\report\formats\HTMLReport;
 use App\Services\Highload\report\formats\IReportFormatStrategy;
@@ -29,7 +30,7 @@ class ReportsCommand extends Command
      */
     public function handle(Reports $reports)
     {
-        $reportsFormatName = $this->option('format') ?? CSVReport::formatName();
+        $reportsFormatName = $this->option('format') ?? IReportFormatStrategy::CSV_NAME;
 
         $formatObject = match ($reportsFormatName) {
             IReportFormatStrategy::HTML_NAME => new HTMLReport(),
@@ -37,5 +38,7 @@ class ReportsCommand extends Command
         };
 
         $reports->generate($formatObject);
+
+        $this->info(Output::getString());
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services\Highload\report\formats;
 use App\Models\Report;
 use App\Models\Highload;
 use App\Models\Response;
+use App\Services\Highload\helpers\Output;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,7 @@ class HTMLReport extends IReportFormatStrategy
 
     const HTML_REPORTS_DIR = 'html/';
 
-    public static function formatName(): string
+    public function formatName(): string
     {
         return IReportFormatStrategy::HTML_NAME;
     }
@@ -26,7 +27,6 @@ class HTMLReport extends IReportFormatStrategy
     protected function makeReport(Highload $highload): void
     {
         $description = $this->makeDescription($highload);
-        echo "$description\n";
 
         $header = $this->makeHeader($description);
 
@@ -90,6 +90,8 @@ class HTMLReport extends IReportFormatStrategy
     protected function createReportFile(int $highloadId, string $report)
     {
         $filename = date('Y-m-d-H-i-s') . "-highload-$highloadId-report.html";
+
+        Output::addString("$filename\n");
 
         Storage::disk('reports')->put(self::HTML_REPORTS_DIR . $filename, $report);
     }

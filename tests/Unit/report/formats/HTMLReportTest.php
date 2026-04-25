@@ -18,7 +18,9 @@ class HTMLReportTest extends TestCase
 
     public function testFormatName()
     {
-        $this->assertEquals(IReportFormatStrategy::HTML_NAME, HTMLReport::formatName());
+        $reportObject = new HTMLReport();
+
+        $this->assertEquals(IReportFormatStrategy::HTML_NAME, $reportObject->formatName());
     }
 
     public function testMakeHeader()
